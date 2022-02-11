@@ -12,13 +12,8 @@ async fn main() {
         joke_type = &args[1];
     }
 
-    let mut joke: api::Joke = api::Joke {
-        setup: String::from(""),
-        delivery: String::from(""),
-    };
-
-    match api::get_joke(&joke_type, &mut joke).await {
-        Ok(()) => {
+    match api::get_joke(&joke_type).await {
+        Ok(joke) => {
             println!("{}", joke.setup);
             sleep(Duration::from_secs(3)).await;
             println!("{}", joke.delivery);
